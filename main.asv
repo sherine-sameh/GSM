@@ -1,0 +1,29 @@
+% first call 
+
+% Transmit
+close all ;
+samples_in_block = 160;
+bit_rate_per_sample = 13;
+clc % clear line 
+%get samples
+[digital_signal,dynamic_range] = ADC('firstcall.wav');
+%get blocks 20 ms blocks return a
+blocks = getBlocks(digital_signal,samples_in_block,bit_rate_per_sample);
+%chanel coding
+[channel_coded_blocks] = ChannelCoding(blocks);
+% interleaving process
+
+
+
+% reverting process
+% de interleaving process
+
+
+% test receive
+[channel_uncoded_blocks] = ChannelReceive(channel_coded_blocks);
+% restoreBlocks
+
+
+% first
+% apply DAC to the data
+

@@ -3,6 +3,6 @@ function [ block ] = RevertConvolution( block )
     traceback = 5 * constlength;
     polynomial = [657 435];
     trellis = poly2trellis(constlength,polynomial);
-    vitdec(block,trellis,traceback,'trunc','hard');
+    block = vitdec(block,trellis,traceback,'trunc','hard');
 end
 

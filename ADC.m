@@ -20,6 +20,6 @@ function [binary_signal,dynamic_range] = ADC(filename)
     dynamic_range = 1.2; % calculated from minimum to maximum
     encoded_signal = uencode(digital_audio_sampled, 13 , dynamic_range);
     subplot(3,1,3);
-    plot(time,encoded_signal,'.');
+    plot(time,encoded_signal);
     binary_signal = de2bi(encoded_signal,13);
  end

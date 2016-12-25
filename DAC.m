@@ -1,4 +1,4 @@
-function [reconstructed_wave wave_int] = DAC (Binary_code, dynamic_range , Fs )
+function [reconstructed_wave] = DAC (Binary_code, dynamic_range , Fs )
     disp('DAC process started');
     disp('length of binary code');
     disp(length(Binary_code));

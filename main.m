@@ -34,5 +34,5 @@ channel_uncoded_blocks = ChannelReceive(channel_coded_blocks);
 audio_received = restoreBlocks(channel_uncoded_blocks);
 
 % apply DAC to the data
-[retrieved_sound decimated_value] = DAC(audio_received,dynamic_range,Fs);
+[retrieved_sound] = DAC(audio_received,dynamic_range,Fs);
 

@@ -1,4 +1,4 @@
-function totalPackets = interleaver(codedBlocks)
+function packet = interleaver(codedBlocks)
     [blocksNumber,codeLength] = size(codedBlocks);
     for i=1:blocksNumber 
         [CurrentCode,length] = adjustSize(codedBlocks(i,:),codeLength);
@@ -15,12 +15,13 @@ function totalPackets = interleaver(codedBlocks)
         
         packetSize = chunkSize*2 + 42;
         packets = zeros(8,packetSize);
-        totalPackets = zeros(blocksNumber*8,packetSize);
-        
+         
         for j=1:8
             packet = generatePacket(interleavedBlock1(:,j)',interleavedBlock2(:,j)');
-            packets(j,:) = packet;
+            packetSize
+            
+            packets(j,:) = packet
         end
-       
+            %totalPackets(:,i)=packets
     end
 end

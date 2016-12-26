@@ -1,0 +1,14 @@
+function adjustedBlocks = adjustSize(codedBlocks)
+    [blocksNumber,codeLength] = size(codedBlocks)
+    for i=1:blocksNumber
+        adjustedBlock = codedBlocks(i,:);
+        while(mod(codeLength,8) ~= 0)
+            adjustedBlock(1,codeLength+1)= 0;
+            codeLength=codeLength+1;
+        end
+        %adjustedBlock(1,codeLength)= 0;    
+        for j=1:codeLength
+        adjustedBlocks(i,j) = adjustedBlock(1
+        end
+    end
+end

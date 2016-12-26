@@ -1,4 +1,4 @@
-function totalPackets = interleaver(codedBlocks)
+function packets = interleaver(codedBlocks)
     [blocksNumber,codeLength] = size(codedBlocks);
     for i=1:blocksNumber 
         [CurrentCode,length] = adjustSize(codedBlocks(i,:),codeLength);

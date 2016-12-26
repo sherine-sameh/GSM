@@ -13,18 +13,10 @@ blocks = getBlocks(digital_signal,samples_in_block,bit_rate_per_sample);
 %chanel coding
 [channel_coded_blocks] = ChannelCoding(blocks);
 % interleaving process
-packets = interleaver(channel_coded_blocks)
+packets = interleaver(channel_coded_blocks);
      %   // sherine here
     
-% GMSK guassian minimum shift keying % modulation
-    % // hassan here
-    
-    
-    
-% reverting process
-
-% GMSK demodulation phase 
-    % // hassan here
+[modulatedPackets, demodulatedPackets, Error] = GMSKModulation(packets)    
 
 % de interleaving process
     % // sherine here

@@ -1,0 +1,8 @@
+function [code] = deinterleaver(packets)
+    [numberOfPackets, packetLength] = size(packets);
+    j
+    for i = 1:numberOfPackets
+         chunk1 = packets([4:61],i)';
+         chunk2 = packets([89:146],i)';
+    end    
+end

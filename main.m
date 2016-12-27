@@ -1,5 +1,4 @@
 % first call 
-
 % Transmit
 close all;
 Fs = 8000;
@@ -13,19 +12,22 @@ blocks = getBlocks(digital_signal,samples_in_block,bit_rate_per_sample);
 %chanel coding
 [channel_coded_blocks] = ChannelCoding(blocks);
 % interleaving process
-packets = interleaver(channel_coded_blocks);
-     %   // sherine here
+[packets,chunckSize,realSize] = interleaver(channel_coded_blocks);
     
-[modulatedPackets, demodulatedPackets, Error] = GMSKModulation(packets)    
+% modulation and demodulation procedure
+%%%%% for tracing %%%%%%%%%%%%%%
+snr = 0;
+%[modulatedPackets, demodulatedPackets, Error] = GMSKModulation(packets,snr);  
 
 % de interleaving process
-    % // sherine here
-
-% test receive
-channel_uncoded_blocks = ChannelReceive(channel_coded_blocks);
+% i need real size because padding will add big noise to every bit in the
+% next audio it can be sent in real implementation
+deInterleavedPackets = deinterleaver(packets,chunckSize,realSize);
+% test receive the de modulates packets
+channel_uncoded_blocks = ChannelReceive(deInterleavedPackets);
 % restoreBlocks
 audio_received = restoreBlocks(channel_uncoded_blocks);
 
 % apply DAC to the data
-[retrieved_sound] = DAC(audio_received,dynamic_range,Fs);
+[retrieved_sound,Binary_code] = DAC(audio_received,dynamic_range,Fs);
 

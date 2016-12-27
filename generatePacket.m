@@ -5,5 +5,4 @@ function packet = generatePacket(chunk1,chunk2)
     guardBand = zeros(1,8);
     packet = [tail chunk1 flag trainingSet flag chunk2 tail guardBand];
     %packet = [chunk1 flag chunk2];
-   
 end

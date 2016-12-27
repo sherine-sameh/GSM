@@ -12,19 +12,19 @@ blocks = getBlocks(digital_signal,samples_in_block,bit_rate_per_sample);
 %chanel coding
 [channel_coded_blocks] = ChannelCoding(blocks);
 % interleaving process
-[packets,chunckSize,realSize] = interleaver(channel_coded_blocks);
+%[packets,chunckSize,realSize] = interleaverGhost(channel_coded_blocks);
     
 % modulation and demodulation procedure
 %%%%% for tracing %%%%%%%%%%%%%%
-snr = 0;
-%[modulatedPackets, demodulatedPackets, Error] = GMSKModulation(packets,snr);  
+snr = 50;
+[modulatedPackets, demodulatedPackets, Error] = GMSKModulation(double(channel_coded_blocks),snr);  
 
 % de interleaving process
 % i need real size because padding will add big noise to every bit in the
 % next audio it can be sent in real implementation
-deInterleavedPackets = deinterleaver(packets,chunckSize,realSize);
+%deInterleavedPackets = deinterleaver(packets,chunckSize,realSize);
 % test receive the de modulates packets
-channel_uncoded_blocks = ChannelReceive(deInterleavedPackets);
+channel_uncoded_blocks = ChannelReceive(demodulatedPackets);
 % restoreBlocks
 audio_received = restoreBlocks(channel_uncoded_blocks);
 
